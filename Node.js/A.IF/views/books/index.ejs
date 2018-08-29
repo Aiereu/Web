@@ -11,11 +11,11 @@
 
       <div class="buttons">
         <% if(isAuthenticated){ %>
-          <a class="btn btn-default" href="/qa/new">New</a>
+          <a class="btn btn-default" href="/books/new">New</a>
         <% } %>
       </div>
 
-      <table class="table table-striped qa">
+      <table class="table table-striped books">
         <thead>
           <tr>
             <th class="title">Title</th>
@@ -24,15 +24,16 @@
           </tr>
         </thead>
         <tbody>
-          <% if(qa == null || qa.length == 0){ %>
+          <% if(books == null || books.length == 0){ %>
             <tr>
               <td class="noData" colspan=100> There is no data to show :( </td>
             </tr>
           <% } %>
-          <% qa.forEach(function(post) { %>
+          <% books.forEach(function(post) { %>
             <tr>
               <td class="title">
-                <a href="/qa/<%= post._id %>"><div class="ellipsis"><%= post.title %></div></a>
+                <a href="/books/<%= post._id %>"><div class="ellipsis"><%= post.title %></div></a>
+                <span class="comments">(<%= post.comments.length %>)</span>
               </td>
               <td class="author">
                 <div class="ellipsis"><%= post.author ? post.author.username : "" %></div>

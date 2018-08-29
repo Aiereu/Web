@@ -6,16 +6,16 @@
   <body>
     <% include ../partials/nav %>
 
-    <div class="container post post-new">
+    <div class="container post post-edit">
       <% include ./partials/header %>
 
       <div class="buttons">
-        <a class="btn btn-default" href="/qa">Back</a>
+        <a class="btn btn-default" href="/debate">Back</a>
       </div>
 
-      <form class="post-form form-horizontal" action="/qa" method="post">
+      <form class="post-form form-horizontal" action="/debate/<%= post._id %>?_method=put" method="post">
         <div class="contentBox">
-          <h3 class="contentBoxTop">New Post</h3>
+          <h3 class="contentBoxTop">기존의 게시글을 수정해주세요</h3>
           <fieldset>
             <div class="form-group <%= (errors.title)?'has-error':'' %>">
               <label for="title" class="col-sm-2 control-label">Title</label>

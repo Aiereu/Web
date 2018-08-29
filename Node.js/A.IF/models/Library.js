@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var util     = require("../util");
 
 // schema
-var postSchema = mongoose.Schema({
+var librarySchema = mongoose.Schema({
   title:{type:String, required:[true,"Title is required!"]},
   body:{type:String, required:[true,"Body is required!"]},
   author:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true},
@@ -18,26 +18,26 @@ var postSchema = mongoose.Schema({
 });
 
 // virtuals
-postSchema.virtual("createdDate")
+librarySchema.virtual("createdDate")
 .get(function(){
   return util.getDate(this.createdAt);
 });
 
-postSchema.virtual("createdTime")
+librarySchema.virtual("createdTime")
 .get(function(){
   return util.getTime(this.createdAt);
 });
 
-postSchema.virtual("updatedDate")
+librarySchema.virtual("updatedDate")
 .get(function(){
   return util.getDate(this.updatedAt);
 });
 
-postSchema.virtual("updatedTime")
+librarySchema.virtual("updatedTime")
 .get(function(){
   return util.getTime(this.updatedAt);
 });
 
 // model & export
-var Post = mongoose.model("post", postSchema);
-module.exports = Post;
+var Library = mongoose.model("library", librarySchema);
+module.exports = Library;

@@ -1,16 +1,16 @@
 var express  = require("express");
 var router   = express.Router();
-var Post     = require("../models/Post");
+var QA     = require("../models/QA");
 var util     = require("../util");
 
 // Index
 router.get("/", function(req, res){
-  Post.find({})
+  QA.find({})
   .populate("author")
   .sort("-createdAt")
-  .exec(function(err, posts){
+  .exec(function(err, qaposts){
     if(err) return res.json(err);
-    res.render("posts/index", {posts:posts});
+    res.render("qaposts/index", {qaposts:qaposts});
   });
 });
 
@@ -18,29 +18,29 @@ router.get("/", function(req, res){
 router.get("/new", util.isLoggedin, function(req, res){
   var post = req.flash("post")[0] || {};
   var errors = req.flash("errors")[0] || {};
-  res.render("posts/new", { post:post, errors:errors });
+  res.render("qaposts/new", { post:post, errors:errors });
 });
 
 // create
 router.post("/", util.isLoggedin, function(req, res){
   req.body.author = req.user._id;
-  Post.create(req.body, function(err, post){
+  QA.create(req.body, function(err, post){
     if(err){
       req.flash("post", req.body);
       req.flash("errors", util.parseError(err));
-      return res.redirect("/posts/new");
+      return res.redirect("/qaposts/new");
     }
-    res.redirect("/posts");
+    res.redirect("/qaposts");
   });
 });
 
 // show
 router.get("/:id", function(req, res){
-  Post.findOne({_id:req.params.id})
+  QA.findOne({_id:req.params.id})
   .populate("author")
   .exec(function(err, post){
     if(err) return res.json(err);
-    res.render("posts/show", {post:post, urlQuery:'', user: req.user});
+    res.render("qaposts/show", {post:post, urlQuery:'', user: req.user});
   });
 });
 
@@ -49,34 +49,34 @@ router.get("/:id/edit", util.isLoggedin, checkPermission, function(req, res){
   var post = req.flash("post")[0];
   var errors = req.flash("errors")[0] || {};
   if(!post){
-    Post.findOne({_id:req.params.id}, function(err, post){
+    QA.findOne({_id:req.params.id}, function(err, post){
       if(err) return res.json(err);
-      res.render("posts/edit", { post:post, errors:errors });
+      res.render("qaposts/edit", { post:post, errors:errors });
     });
   } else {
     post._id = req.params.id;
-    res.render("posts/edit", { post:post, errors:errors });
+    res.render("qaposts/edit", { post:post, errors:errors });
   }
 });
 
 // update
 router.put("/:id", util.isLoggedin, checkPermission, function(req, res){
   req.body.updatedAt = Date.now();
-  Post.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators:true}, function(err, post){
+  QA.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators:true}, function(err, post){
     if(err){
       req.flash("post", req.body);
       req.flash("errors", util.parseError(err));
-      return res.redirect("/posts/"+req.params.id+"/edit");
+      return res.redirect("/qaposts/"+req.params.id+"/edit");
     }
-    res.redirect("/posts/"+req.params.id);
+    res.redirect("/qaposts/"+req.params.id);
   });
 });
 
 // destroy
 router.delete("/:id", util.isLoggedin, checkPermission, function(req, res){
-  Post.remove({_id:req.params.id}, function(err){
+  QA.remove({_id:req.params.id}, function(err){
     if(err) return res.json(err);
-    res.redirect("/posts");
+    res.redirect("/qaposts");
   });
 });
 
@@ -89,10 +89,10 @@ router.post('/:id/comments', async (req,res) => {
   };
   
   try {
-  var post = await Post.findById(req.params.id);
+  var post = await QA.findById(req.params.id);
   post.comments.push(newComment);
   await post.save();
-  res.redirect('/posts/'+req.params.id);
+  res.redirect('/qaposts/'+req.params.id);
 
   } catch(err) {
     return res.json({success:false, message:err});
@@ -101,10 +101,10 @@ router.post('/:id/comments', async (req,res) => {
 
 //destroy a comment
 router.get('/:postId/comments/:commentId', function(req,res){
-  Post.update({_id:req.params.postId},{$pull:{comments:{_id:req.params.commentId}}},
+  QA.update({_id:req.params.postId},{$pull:{comments:{_id:req.params.commentId}}},
     function(err,post){
       if(err) return res.json({success:false, message:err});
-      res.redirect('/posts/'+req.params.postId);
+      res.redirect('/qaposts/'+req.params.postId);
   });
 });
 
@@ -112,7 +112,7 @@ module.exports = router;
 
 // private functions
 function checkPermission(req, res, next){
-  Post.findOne({_id:req.params.id}, function(err, post){
+  QA.findOne({_id:req.params.id}, function(err, post){
     if(err) return res.json(err);
     if(post.author != req.user.id) return util.noPermission(req, res);
 

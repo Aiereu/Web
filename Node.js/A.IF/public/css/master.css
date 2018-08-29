@@ -194,35 +194,200 @@ form .form-group{
   margin-bottom: 11px;
 }
 
-/* QA style */
-.post-index .qa{
+/* QAPost */
+.post-index .qaposts{
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  table-layout: fixed;
 }
-.post .qa th,
-.post .qa td
+.post .qaposts th,
+.post .qaposts td
 {
   padding: 7px 5px;
 }
-.post .qa th:first-child,
-.post .qa td:first-child
+.post .qaposts th:first-child,
+.post .qaposts td:first-child
 {
   padding-left: 15px;
 }
-.post .qa thead{
+.post .qaposts thead{
   background-color: #F5F5F5;
 }
-.post .qa thead tr th{
+.post .qaposts thead tr th{
   border-bottom: 1px solid #ccc;
 }
-.post .qa tbody tr:nth-child(odd){
+.post .qaposts tbody tr:nth-child(odd){
   background-color: #F4FFFF;
 }
-.post .qa tbody .noData{
+.post .qaposts tbody .noData{
   background-color: #FFFFFF;
   text-align: center;
 }
-.post .qa .date{
+.post .qaposts .author{
+  text-align: center;
+  width: 80px;
+}
+.post .qaposts .date{
+  text-align: center;
+  width: 100px;
+  padding-right: 15px;
+}
+
+
+/* Debate */
+.post-index .debate{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  table-layout: fixed;
+}
+.post .debate th,
+.post .debate td
+{
+  padding: 7px 5px;
+}
+.post .debate th:first-child,
+.post .debate td:first-child
+{
+  padding-left: 15px;
+}
+.post .debate thead{
+  background-color: #F5F5F5;
+}
+.post .debate thead tr th{
+  border-bottom: 1px solid #ccc;
+}
+.post .debate tbody tr:nth-child(odd){
+  background-color: #F4FFFF;
+}
+.post .debate tbody .noData{
+  background-color: #FFFFFF;
+  text-align: center;
+}
+.post .debate .author{
+  text-align: center;
+  width: 80px;
+}
+.post .debate .date{
+  text-align: center;
+  width: 100px;
+  padding-right: 15px;
+}
+
+
+/* Sharing informationt */
+.post-index .information{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  table-layout: fixed;
+}
+.post .information th,
+.post .information td
+{
+  padding: 7px 5px;
+}
+.post .information th:first-child,
+.post .information td:first-child
+{
+  padding-left: 15px;
+}
+.post .information thead{
+  background-color: #F5F5F5;
+}
+.post .information thead tr th{
+  border-bottom: 1px solid #ccc;
+}
+.post .information tbody tr:nth-child(odd){
+  background-color: #F4FFFF;
+}
+.post .information tbody .noData{
+  background-color: #FFFFFF;
+  text-align: center;
+}
+.post .information .author{
+  text-align: center;
+  width: 80px;
+}
+.post .information .date{
+  text-align: center;
+  width: 100px;
+  padding-right: 15px;
+}
+
+
+/* Books */
+.post-index .books{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  table-layout: fixed;
+}
+.post .books th,
+.post .books td
+{
+  padding: 7px 5px;
+}
+.post .books th:first-child,
+.post .books td:first-child
+{
+  padding-left: 15px;
+}
+.post .books thead{
+  background-color: #F5F5F5;
+}
+.post .books thead tr th{
+  border-bottom: 1px solid #ccc;
+}
+.post .books tbody tr:nth-child(odd){
+  background-color: #F4FFFF;
+}
+.post .books tbody .noData{
+  background-color: #FFFFFF;
+  text-align: center;
+}
+.post .books .author{
+  text-align: center;
+  width: 80px;
+}
+.post .books .date{
+  text-align: center;
+  width: 100px;
+  padding-right: 15px;
+}
+
+
+/* Library */
+.post-index .library{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  table-layout: fixed;
+}
+.post .library th,
+.post .library td
+{
+  padding: 7px 5px;
+}
+.post .library th:first-child,
+.post .library td:first-child
+{
+  padding-left: 15px;
+}
+.post .library thead{
+  background-color: #F5F5F5;
+}
+.post .library thead tr th{
+  border-bottom: 1px solid #ccc;
+}
+.post .library tbody tr:nth-child(odd){
+  background-color: #F4FFFF;
+}
+.post .library tbody .noData{
+  background-color: #FFFFFF;
+  text-align: center;
+}
+.post .library .author{
+  text-align: center;
+  width: 80px;
+}
+.post .library .date{
   text-align: center;
   width: 100px;
   padding-right: 15px;

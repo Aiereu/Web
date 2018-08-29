@@ -6,11 +6,11 @@ var flash          = require("connect-flash");
 var session        = require("express-session");
 var passport       = require("./config/passport");
 var app = express();
-var MONGO_DB = "mongodb://AdminIL:Admin1001@ds143461.mlab.com:43461/il";
+var MONGO_DB = "mongodb://Admin:admin1001@ds135852.mlab.com:35852/aif";
 
 
 // DB setting
-mongoose.connect(MONGO_DB, { useMongoClient: true });
+mongoose.connect(MONGO_DB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.once("open", function(){
   console.log("DB connected");
@@ -43,7 +43,11 @@ app.use(function(req,res,next){
 app.use("/", require("./routes/home"));
 app.use("/posts", require("./routes/posts"));
 app.use("/users", require("./routes/users"));
-app.use("/qa", require("./routes/qa"));
+app.use("/qaposts", require("./routes/qaposts"));
+app.use("/debate", require("./routes/debate"));
+app.use("/information", require("./routes/information"));
+app.use("/books", require("./routes/books"));
+app.use("/library", require("./routes/library"));
 
 // Port setting
 app.listen(3000, function(){
