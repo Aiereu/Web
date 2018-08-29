@@ -26,7 +26,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use(session({secret:"MySecret"}));
+app.use(session({
+  secret: 'IL',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // Passport
 app.use(passport.initialize());
